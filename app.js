@@ -1,18 +1,17 @@
-function successFunction(response){
-    // Do success code here.
-    console.log(`Success!!!`);
-    console.log(response.data);
+function inspirSuccess(response){
+    console.log("All the Inspiration!");
+    console.log(response);
 }
-function failFunction(error){
-    // Do failure code here.
-    console.log(`Failure!`);
+
+function inspirFail(error){
+    console.log("No Inspiration Today!");
     console.log(error);
 }
 
-axios.request({
-    option: value,
-}).then(successFunction).catch(failFunction);
+function inspiration(){
+    axios.get({
+        get : "https://kimiquotes.herokuapp.com/quotes/unstamped",
+    }).then(inspirSuccess).catch(inspirFail);
+}
 
-
-
-
+document.getElementById(`pressButton`).addEventListener(`click`,inspiration);
