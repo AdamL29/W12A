@@ -1,17 +1,18 @@
+function inspiration(){
+    axios.request({
+        url : "https://kimiquotes.herokuapp.com/quotes/unstamped",
+    }).then(inspirSuccess).catch(inspirFail);
+}
+
 function inspirSuccess(response){
-    console.log("All the Inspiration!");
+    let data = response.data;
+    document.getElementById(`results`).insertAdjacentHTML(`beforeend`, `<h2>${data[0].quote}</h2>`);
     console.log(response);
 }
 
 function inspirFail(error){
-    console.log("No Inspiration Today!");
+    document.getElementById(`results`).insertAdjacentHTML(`beforeend`, `<h2>FAILURE</h2>`);
     console.log(error);
-}
-
-function inspiration(){
-    axios.get({
-        get : "https://kimiquotes.herokuapp.com/quotes/unstamped",
-    }).then(inspirSuccess).catch(inspirFail);
 }
 
 document.getElementById(`pressButton`).addEventListener(`click`,inspiration);
